@@ -10,9 +10,9 @@ const Header: React.FC = () => {
 
     return (
         <header className="sticky top-0 z-50 bg-white shadow-sm">
-            <div className="container mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
+            <div className="container mx-auto px-4 md:px-6 py-3 flex items-center justify-between relative">
                 {/* Logo */}
-                <div className="flex items-center">
+                <div className="flex items-center lg:flex-1">
                     <div className="relative overflow-visible">
                         <Image
                             src="/images/logo.webp"
@@ -26,7 +26,7 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
+                <nav className="hidden lg:flex items-center gap-8 text-gray-700 font-medium absolute left-1/2 -translate-x-1/2">
                     <a href="#" className="hover:text-[#5a1a1a] transition-colors">Inicio</a>
                     <a href="#" className="hover:text-[#5a1a1a] transition-colors">Categorías</a>
                     <a href="#" className="hover:text-[#5a1a1a] transition-colors">Ubicaciones</a>
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                 </nav>
 
                 {/* CTA Button & Mobile Toggle */}
-                <div className="flex items-center justify-between flex-1 lg:flex-none lg:justify-end gap-2 sm:gap-4 ml-4 lg:ml-0">
+                <div className="flex items-center justify-between flex-1 lg:flex-1 lg:justify-end gap-2 sm:gap-4 ml-4 lg:ml-0">
                     <div className="flex-1 flex justify-center lg:block lg:flex-none">
                         <button className="bg-[#5a1a1a] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-lg hover:bg-[#4a1515] transition-all transform hover:scale-105 whitespace-nowrap">
                             Contactanos
@@ -1350,7 +1350,7 @@ const Footer: React.FC = () => {
 
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-gray-100 text-center md:flex md:justify-between text-sm text-gray-500">
-                    <p>© 2026 Comercial Proalv - Soluciones Integrales de Limpieza.</p>
+                    <p>Diseñado por <a href="https://cesarreyesjaramillo.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#5a1a1a] underline decoration-[#5a1a1a]/30 underline-offset-4 transition-colors">Cesar Reyes</a> | Comercial Proalv 2026</p>
                     <div className="mt-6 md:mt-0 flex justify-center md:justify-end gap-6">
                         <a href="#" className="hover:text-[#5a1a1a]">Privacidad</a>
                         <a href="#" className="hover:text-[#5a1a1a]">Términos</a>
