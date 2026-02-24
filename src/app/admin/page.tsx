@@ -41,7 +41,7 @@ export default function AdminPage() {
                     titulo: '¡Oferta Especial!',
                     descripcion: 'Descubre nuestros nuevos productos de limpieza industrial.',
                     oferta: '20% DESC',
-                    imagen: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop',
+                    imagen: '/images/cat-hidrolavadora.webp',
                     pdfUrl: '#',
                     activo: true
                 };
@@ -72,7 +72,7 @@ export default function AdminPage() {
             titulo: 'Nuevo Anuncio',
             descripcion: 'Descripción del anuncio...',
             oferta: 'OFERTA',
-            imagen: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop',
+            imagen: '/images/cat-hidrolavadora.webp',
             pdfUrl: '#',
             activo: true
         };
@@ -198,8 +198,8 @@ export default function AdminPage() {
                                     key={ann.id}
                                     onClick={() => setSelectedId(ann.id)}
                                     className={`p-4 rounded-2xl cursor-pointer transition-all border-2 flex items-center justify-between group ${selectedId === ann.id
-                                            ? 'bg-white border-[#5a1a1a] shadow-lg'
-                                            : 'bg-gray-100 border-transparent hover:bg-white hover:border-gray-200'
+                                        ? 'bg-white border-[#5a1a1a] shadow-lg'
+                                        : 'bg-gray-100 border-transparent hover:bg-white hover:border-gray-200'
                                         }`}
                                 >
                                     <div className="flex items-center gap-3 overflow-hidden">
