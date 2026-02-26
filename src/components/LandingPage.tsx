@@ -1199,32 +1199,20 @@ const Contacto: React.FC = () => {
 // --- AnnouncementCard Component ---
 const AnnouncementCard: React.FC = () => {
     const [announcements, setAnnouncements] = useState<any[]>([]);
-    const [closedIds, setClosedIds] = useState<string[]>([]);
+    const [closedIds, setClosedIds] = useState<number[]>([]);
 
     useEffect(() => {
-        const loadCards = () => {
-            const savedData = localStorage.getItem('proalv_announcements');
-            if (savedData) {
-                setAnnouncements(JSON.parse(savedData));
-            } else {
-                // Compatibility for old key
-                const legacy = localStorage.getItem('proalv_announcement_card');
-                if (legacy) {
-                    setAnnouncements([{ ...JSON.parse(legacy), id: 'legacy' }]);
-                }
-            }
-        };
-
-        loadCards();
-        window.addEventListener('storage', loadCards);
-        return () => window.removeEventListener('storage', loadCards);
+        fetch('/api/announcements')
+            .then(res => res.json())
+            .then(data => setAnnouncements(Array.isArray(data) ? data : []))
+            .catch(() => { });
     }, []);
 
     const activeAnnouncements = announcements.filter(a => a.activo && !closedIds.includes(a.id));
 
     if (activeAnnouncements.length === 0) return null;
 
-    const handleClose = (id: string) => {
+    const handleClose = (id: number) => {
         setClosedIds(prev => [...prev, id]);
     };
 
@@ -1232,13 +1220,13 @@ const AnnouncementCard: React.FC = () => {
         <div className="fixed bottom-6 left-6 z-[100] flex flex-col gap-4">
             {activeAnnouncements.map((cardData, index) => (
                 <div
-                    key={cardData.id || index}
+                    key={cardData.id}
                     className="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-4 pr-6 flex gap-5 max-w-[380px] relative border border-gray-100 group transition-all hover:scale-[1.02] animate-fade-in-up"
                     style={{ animationDelay: `${index * 150}ms` }}
                 >
                     {/* Close Button */}
                     <button
-                        onClick={() => handleClose(cardData.id || index)}
+                        onClick={() => handleClose(cardData.id)}
                         className="absolute -top-1 -right-1 bg-white text-gray-400 hover:text-[#5a1a1a] p-1 rounded-full shadow-md border border-gray-100 transition-all hover:bg-gray-50 z-10"
                     >
                         <X className="w-3.5 h-3.5" />
@@ -1251,7 +1239,7 @@ const AnnouncementCard: React.FC = () => {
 
                     {/* Left side: Image */}
                     <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 bg-gray-50 relative border-2 border-gray-50">
-                        <img src={cardData.imagen} alt={cardData.titulo} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <img src={cardData.imagen_url} alt={cardData.titulo} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     </div>
 
                     {/* Right side: Content */}
@@ -1266,13 +1254,13 @@ const AnnouncementCard: React.FC = () => {
                         </div>
 
                         <a
-                            href={cardData.pdfUrl}
+                            href={cardData.pdf_url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-[#5a1a1a] text-white text-[9px] font-black py-2 rounded-xl text-center hover:bg-[#4a1515] transition-all flex items-center justify-center gap-2 uppercase tracking-wider shadow-sm"
                         >
                             <FileText className="w-3 h-3" />
-                            Catálogo PDF
+                            Ver PDF
                         </a>
                     </div>
                 </div>
