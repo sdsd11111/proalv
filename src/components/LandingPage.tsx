@@ -15,7 +15,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center lg:flex-1">
                     <div className="relative overflow-visible">
                         <Image
-                            src="/images/logo.webp"
+                            src="/images/Logo.webp"
                             alt="Comercial Proalv Logo"
                             width={320}
                             height={64}
@@ -1289,7 +1289,15 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-12 text-center md:text-left">
                     {/* Column 1: About */}
                     <div className="space-y-6">
-                        <h3 className="text-xl font-bold text-[#5a1a1a]">Sobre Nosotros</h3>
+                        <div className="flex justify-center md:justify-start">
+                            <Image
+                                src="/images/Logo.webp"
+                                alt="Comercial Proalv Logo"
+                                width={180}
+                                height={36}
+                                className="h-10 w-auto object-contain"
+                            />
+                        </div>
                         <p className="text-gray-600 leading-relaxed mx-auto md:mx-0 max-w-sm md:max-w-none">
                             Comercial Proalv: 18 años de experiencia en la comercialización de equipos de limpieza, mecánica y suministros químicos. Tu socio estratégico para el mantenimiento industrial y doméstico en el sur del Ecuador.
                         </p>
